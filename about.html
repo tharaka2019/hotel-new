@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Lumière Restaurant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(201, 121, 128, 0.1) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .about-hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--accent-cream);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .about-grid img {
+            border-radius: 8px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .about-grid h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .about-grid p {
+            color: rgba(245, 245, 245, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(201, 121, 128, 0.05) 100%);
+            padding: 2rem;
+            border-left: 4px solid var(--primary-gold);
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(201, 121, 128, 0.05) 100%);
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .value-card:nth-child(1) { animation-delay: 0.1s; }
+        .value-card:nth-child(2) { animation-delay: 0.2s; }
+        .value-card:nth-child(3) { animation-delay: 0.3s; }
+        .value-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .value-card:hover {
+            border-color: var(--primary-gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(201, 121, 128, 0.1) 100%);
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .value-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: rgba(245, 245, 245, 0.7);
+            line-height: 1.6;
+        }
+
+        .team-section {
+            background: var(--dark-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.3s; }
+
+        .team-member-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 3px solid var(--primary-gold);
+        }
+
+        .team-member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .position {
+            color: var(--accent-rose);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-member p {
+            color: rgba(245, 245, 245, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .timeline-year::after {
+            content: '';
+            position: absolute;
+            right: -50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-gold);
+            transform: translateY(-50%);
+            border: 3px solid var(--dark-bg);
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(201, 121, 128, 0.05) 100%);
+            padding: 2rem;
+            border-left: 2px solid var(--primary-gold);
+            border-radius: 4px;
+        }
+
+        .timeline-content h4 {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content p {
+            color: rgba(245, 245, 245, 0.7);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-year::after {
+                display: none;
+            }
+
+            .timeline-content {
+                border-left: 4px solid var(--primary-gold);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <nav>
+            <div class="logo">Lumière</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="header-cta">
+                <button class="reserve-btn">Reserve Now</button>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PAGE BANNER ===== -->
+    <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&h=400&fit=crop');">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>About Us</h1>
+            <p>Crafting Excellence Since 2015</p>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT HERO ===== -->
+    <section class="about-hero">
+        <h2>Welcome to Lumière</h2>
+        <p>Where culinary passion meets artistic excellence in an atmosphere of timeless elegance</p>
+    </section>
+
+    <!-- ===== OUR STORY ===== -->
+    <section class="menu-section">
+        <div class="about-grid">
+            <div>
+                <h3>Our Story</h3>
+                <p>
+                    Lumière was founded in 2015 with a singular vision: to create a sanctuary of culinary excellence 
+                    where every detail—from the ambiance to the cuisine—reflects our unwavering commitment to perfection.
+                </p>
+                <p>
+                    Our journey began with Chef Laurent Beaumont's dream of bringing classical French techniques 
+                    combined with contemporary innovation to the forefront of fine dining. What started as a modest 
+                    20-table establishment has grown into one of the city's most celebrated restaurants.
+                </p>
+                
+                <div class="about-highlight">
+                    <strong style="color: var(--primary-gold);">Our Philosophy:</strong>
+                    <p style="margin-top: 0.5rem;">
+                        We believe that exceptional dining transcends food alone. It's about creating memories, 
+                        celebrating moments, and honoring the artistry that goes into every dish and every service.
+                    </p>
+                </div>
+
+                <p>
+                    Today, with a dedicated team of over 50 professionals, we serve hundreds of guests each month, 
+                    each leaving with an appreciation for the meticulous craftsmanship that defines Lumière.
+                </p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&h=500&fit=crop" alt="Restaurant Interior">
+        </div>
+    </section>
+
+    <!-- ===== OUR VALUES ===== -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2>Our Core Values</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Sustainability</h4>
+                <p>
+                    We source only the finest, most sustainable ingredients from ethical suppliers who share 
+                    our commitment to quality and environmental responsibility.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-sparkles"></i></div>
+                <h4>Excellence</h4>
+                <p>
+                    Every dish is a masterpiece. We invest in continuous training, innovation, and refinement 
+                    to maintain the highest standards of culinary excellence.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-heart"></i></div>
+                <h4>Passion</h4>
+                <p>
+                    Our team is driven by an unwavering passion for creating memorable experiences. Every plate 
+                    tells a story of dedication and love for the craft.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h4>Service</h4>
+                <p>
+                    We believe in anticipating needs and creating an atmosphere where every guest feels valued, 
+                    respected, and celebrated.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUR TEAM ===== -->
+    <section class="team-section">
+        <div class="section-header">
+            <h2>Meet Our Leadership</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-img">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Chef Laurent Beaumont">
+                </div>
+                <h4>Laurent Beaumont</h4>
+                <p class="position">Executive Chef & Founder</p>
+                <p>
+                    A classically trained chef with 25 years of international experience. Chef Laurent's vision 
+                    for blending tradition with innovation has earned Lumière its prestigious accolades.
+                </p>
+            </div>
+
+            <div class="team-member">
+                <div class="team-member-img">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Director of Service">
+                </div>
+                <h4>Marie Dubois</h4>
+                <p class="position">Director of Service</p>
+                <p>
+                    With extensive training in hospitality management, Marie ensures that every guest experience 
+                    is seamless, warm, and truly exceptional.
+                </p>
+            </div>
+
+            <div class="team-member">
+                <div class="team-member-img">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Head Sommelier">
+                </div>
+                <h4>Jacques Martineau</h4>
+                <p class="position">Head Sommelier</p>
+                <p>
+                    An award-winning sommelier with an unparalleled wine collection and deep knowledge of pairings 
+                    that complement our cuisine perfectly.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2>Our Journey</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <h4>Lumière Opens</h4>
+                    <p>Chef Laurent Beaumont opens the doors to Lumière with a vision of creating the city's 
+                    premier fine dining destination.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-content">
+                    <h4>First Recognition</h4>
+                    <p>Lumière receives its first Michelin star, recognizing our commitment to culinary excellence 
+                    and service.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2019</div>
+                <div class="timeline-content">
+                    <h4>Second Star Achievement</h4>
+                    <p>The second Michelin star is awarded, solidifying our position as one of the city's finest 
+                    dining establishments.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h4>Continued Excellence</h4>
+                    <p>Nearly a decade of unwavering excellence, innovation, and dedicated service to our valued guests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AWARDS SECTION ===== -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2>Recognition & Awards</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-star"></i></div>
+                <h4>Michelin 2-Star</h4>
+                <p>Awarded for consistent excellence in cuisine and service</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-trophy"></i></div>
+                <h4>Best Restaurant Award</h4>
+                <p>Recognition from the International Culinary Association</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-certificate"></i></div>
+                <h4>Chef of the Year</h4>
+                <p>Chef Laurent Beaumont honored for culinary innovation</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-gem"></i></div>
+                <h4>Wine List Award</h4>
+                <p>Excellence in wine curation and sommelier expertise</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Lumière</h4>
+                <p style="color: rgba(245, 245, 245, 0.7); font-size: 0.95rem; line-height: 1.8;">
+                    Experience culinary excellence in an atmosphere of unparalleled sophistication.
+                </p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Location & Contact</h4>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong style="color: var(--text-light);">123 Gourmet Street</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">New York, NY 10001</span>
+                    </div>
+                </div>
+                <div class="contact-info" style="margin-top: 1.5rem;">
+                    <i class="fas fa-phone"></i>
+                    <div><a href="tel:+12125551234" style="color: rgba(245, 245, 245, 0.7); text-decoration: none;">+1 (212) 555-1234</a></div>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button>Join</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2024 Lumière Fine Dining. All Rights Reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="badge">Michelin Rated</div>
+                <div class="badge">Award Winning</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

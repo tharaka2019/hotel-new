@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière - Fine Dining Restaurant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <nav>
+            <div class="logo">Lumière</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="header-cta">
+                <button class="reserve-btn">Reserve Now</button>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SLIDER ===== -->
+    <section class="hero-section" id="home">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1504674900968-8873fac614b7?w=1200&h=800&fit=crop')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Exquisite</h1>
+                    <p>Culinary Masterpieces Crafted with Passion</p>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=800&fit=crop')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Refined</h1>
+                    <p>Where Elegance Meets Innovation</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&h=800&fit=crop')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Unforgettable</h1>
+                    <p>An Experience to Savor Every Moment</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="slide-controls">
+                <button class="slider-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Dots -->
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT OUR RESTAURANT ===== -->
+    <section class="about-restaurant">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Welcome to Lumière</h2>
+                <div class="divider"></div>
+                <p class="intro-text">
+                    Nestled in the heart of the city, Lumière represents the pinnacle of fine dining excellence. 
+                    For nearly a decade, we've been crafting unforgettable culinary experiences that celebrate 
+                    the finest ingredients sourced from around the globe.
+                </p>
+                <p class="description">
+                    Our chef-led kitchen combines classical French techniques with contemporary innovation, 
+                    creating dishes that engage all the senses. Every plate is a work of art, meticulously 
+                    prepared by our award-winning culinary team. We believe in using only the freshest, 
+                    most sustainable ingredients to ensure every dish reflects our commitment to excellence.
+                </p>
+                <p class="description">
+                    With an extensive wine collection curated by our sommelier, elegant ambiance, and impeccable service, 
+                    Lumière offers more than just a meal—it's an experience that lingers long after the last course.
+                </p>
+                <a href="about.html" class="cta-button">Learn More About Us</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&h=500&fit=crop" alt="Restaurant Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED DISHES ===== -->
+    <section class="featured-section">
+        <div class="section-header">
+            <h2>Featured Dishes</h2>
+            <div class="divider"></div>
+            <p>Try our signature selections</p>
+        </div>
+
+        <div class="featured-dishes">
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop" alt="Prime Ribeye">
+                </div>
+                <div class="dish-info">
+                    <h3>Prime Ribeye Steak</h3>
+                    <p class="dish-desc">Aged 28 days, with truffle jus and seasonal vegetables</p>
+                    <p class="dish-price">$58</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop" alt="Dover Sole">
+                </div>
+                <div class="dish-info">
+                    <h3>Dover Sole Meunière</h3>
+                    <p class="dish-desc">Whole fish with beurre blanc and capers</p>
+                    <p class="dish-price">$52</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1604271701375-fdf5205e8b0f?w=400&h=300&fit=crop" alt="Chocolate Soufflé">
+                </div>
+                <div class="dish-info">
+                    <h3>Chocolate Soufflé</h3>
+                    <p class="dish-desc">Warm, decadent with vanilla crème anglaise</p>
+                    <p class="dish-price">$16</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1548365328-c9fa89d128fa?w=400&h=300&fit=crop" alt="Lobster Thermidor">
+                </div>
+                <div class="dish-info">
+                    <h3>Lobster Thermidor</h3>
+                    <p class="dish-desc">Classic preparation with champagne sauce</p>
+                    <p class="dish-price">$55</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="menu.html" class="cta-button">View Full Menu</a>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <h2>What Our Guests Say</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "Lumière redefined my understanding of fine dining. Every course was a revelation, and the service 
+                    was impeccable. We'll definitely be back!"
+                </p>
+                <p class="testimonial-author">- Sarah Mitchell</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "An extraordinary experience from start to finish. The wine pairings were exceptional, 
+                    and the chef's creativity is truly unmatched."
+                </p>
+                <p class="testimonial-author">- James Rodriguez</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "The attention to detail is remarkable. From the ambiance to the presentation of each dish, 
+                    everything speaks of excellence and care."
+                </p>
+                <p class="testimonial-author">- Emma Thompson</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <!-- Column 1: About -->
+            <div class="footer-column">
+                <h4>Lumière</h4>
+                <p style="color: rgba(245, 245, 245, 0.7); font-size: 0.95rem; line-height: 1.8;">
+                    Experience culinary excellence in an atmosphere of unparalleled sophistication. Our chef-driven cuisine celebrates the finest ingredients sourced globally.
+                </p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Hours -->
+            <div class="footer-column">
+                <h4>Hours</h4>
+                <ul>
+                    <li>
+                        <strong style="color: var(--text-light);">Monday - Thursday</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">5:00 PM - 11:00 PM</span>
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <strong style="color: var(--text-light);">Friday - Saturday</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">5:00 PM - 12:00 AM</span>
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <strong style="color: var(--text-light);">Sunday</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">5:00 PM - 10:00 PM</span>
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <strong style="color: var(--accent-rose);">Closed: Mondays (Holidays)</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Location -->
+            <div class="footer-column">
+                <h4>Location & Contact</h4>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong style="color: var(--text-light);">123 Gourmet Street</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">New York, NY 10001</span>
+                    </div>
+                </div>
+                <div class="contact-info" style="margin-top: 1.5rem;">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <a href="tel:+12125551234" style="color: rgba(245, 245, 245, 0.7); text-decoration: none;">+1 (212) 555-1234</a>
+                    </div>
+                </div>
+                <div class="contact-info" style="margin-top: 1.5rem;">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <a href="mailto:info@lumiere.com" style="color: rgba(245, 245, 245, 0.7); text-decoration: none;">info@lumiere.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4: Newsletter -->
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p style="color: rgba(245, 245, 245, 0.7); font-size: 0.95rem; margin-bottom: 1rem;">
+                    Subscribe to receive exclusive offers and culinary events
+                </p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button>Join</button>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <p style="color: rgba(245, 245, 245, 0.7); font-size: 0.85rem; margin-bottom: 1rem;">Payment Methods:</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <i class="fab fa-cc-visa" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+                        <i class="fab fa-cc-mastercard" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+                        <i class="fab fa-cc-amex" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2024 Lumière Fine Dining. All Rights Reserved. | 
+                <a href="#" style="color: var(--primary-gold); text-decoration: none;">Privacy Policy</a> | 
+                <a href="#" style="color: var(--primary-gold); text-decoration: none;">Terms & Conditions</a>
+            </div>
+            <div class="footer-badges">
+                <div class="badge">Michelin Rated</div>
+                <div class="badge">Award Winning</div>
+                <div class="badge">Since 2015</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

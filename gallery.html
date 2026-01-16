@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Lumière Restaurant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            group: 'gallery';
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.15s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.25s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.35s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.45s; }
+        .gallery-item:nth-child(9) { animation-delay: 0.5s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-content {
+            text-align: center;
+        }
+
+        .gallery-overlay-icon {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-overlay-title {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--primary-gold);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-gold);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-nav:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .gallery-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .category-btn.active {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+
+        .category-btn:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .modal-nav {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <nav>
+            <div class="logo">Lumière</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="header-cta">
+                <button class="reserve-btn">Reserve Now</button>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PAGE BANNER ===== -->
+    <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&h=400&fit=crop');">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>Our Gallery</h1>
+            <p>Visual Journey Through Our World</p>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2>Gallery</h2>
+            <div class="divider"></div>
+            <p>Experience the ambiance, cuisine, and artistry of Lumière</p>
+        </div>
+
+        <div class="gallery-categories">
+            <button class="category-btn active" onclick="filterGallery('all')">All</button>
+            <button class="category-btn" onclick="filterGallery('ambiance')">Ambiance</button>
+            <button class="category-btn" onclick="filterGallery('dishes')">Dishes</button>
+            <button class="category-btn" onclick="filterGallery('events')">Events</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Ambiance Images -->
+            <div class="gallery-item" data-category="ambiance" onclick="openModal(0)">
+                <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&h=400&fit=crop" alt="Restaurant Ambiance">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Elegant Dining Room</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="ambiance" onclick="openModal(1)">
+                <img src="https://images.unsplash.com/photo-1579154204601-01d8cc00e5fd?w=400&h=400&fit=crop" alt="Bar Area">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Premium Bar</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="ambiance" onclick="openModal(2)">
+                <img src="https://images.unsplash.com/photo-1578474846514-b829f5185b77?w=400&h=400&fit=crop" alt="Dining Table">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Intimate Seating</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dishes Images -->
+            <div class="gallery-item" data-category="dishes" onclick="openModal(3)">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop" alt="Gourmet Dish">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Signature Dish</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="dishes" onclick="openModal(4)">
+                <img src="https://images.unsplash.com/photo-1504674900968-8873fac614b7?w=400&h=400&fit=crop" alt="Plated Dish">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Main Course</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="dishes" onclick="openModal(5)">
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop" alt="Dessert">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Decadent Dessert</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="dishes" onclick="openModal(6)">
+                <img src="https://images.unsplash.com/photo-1548365328-c9fa89d128fa?w=400&h=400&fit=crop" alt="Appetizer">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Appetizer Special</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Images -->
+            <div class="gallery-item" data-category="events" onclick="openModal(7)">
+                <img src="https://images.unsplash.com/photo-1519671482677-11191201a6fd?w=400&h=400&fit=crop" alt="Event">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Wedding Event</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events" onclick="openModal(8)">
+                <img src="https://images.unsplash.com/photo-1514877286983-f2d6d4a0d34e?w=400&h=400&fit=crop" alt="Corporate Event">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-content">
+                        <div class="gallery-overlay-icon"><i class="fas fa-expand"></i></div>
+                        <div class="gallery-overlay-title">Corporate Gathering</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal" id="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img class="modal-img" src="" alt="">
+        </div>
+        <span class="modal-nav modal-prev" onclick="changeModalImage(-1)">&#10094;</span>
+        <span class="modal-nav modal-next" onclick="changeModalImage(1)">&#10095;</span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Lumière</h4>
+                <p style="color: rgba(245, 245, 245, 0.7); font-size: 0.95rem; line-height: 1.8;">
+                    Experience culinary excellence in an atmosphere of unparalleled sophistication.
+                </p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Location & Contact</h4>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong style="color: var(--text-light);">123 Gourmet Street</strong><br>
+                        <span style="color: rgba(245, 245, 245, 0.7);">New York, NY 10001</span>
+                    </div>
+                </div>
+                <div class="contact-info" style="margin-top: 1.5rem;">
+                    <i class="fas fa-phone"></i>
+                    <div><a href="tel:+12125551234" style="color: rgba(245, 245, 245, 0.7); text-decoration: none;">+1 (212) 555-1234</a></div>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button>Join</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2024 Lumière Fine Dining. All Rights Reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="badge">Michelin Rated</div>
+                <div class="badge">Award Winning</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let currentModalIndex = 0;
+
+        function openModal(index) {
+            currentModalIndex = index;
+            const images = document.querySelectorAll('.gallery-item img');
+            const modal = document.getElementById('modal');
+            const modalImg = modal.querySelector('.modal-img');
+            
+            modalImg.src = images[index].src;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function changeModalImage(n) {
+            const images = document.querySelectorAll('.gallery-item img');
+            currentModalIndex += n;
+            
+            if (currentModalIndex >= images.length) currentModalIndex = 0;
+            if (currentModalIndex < 0) currentModalIndex = images.length - 1;
+            
+            const modal = document.getElementById('modal');
+            const modalImg = modal.querySelector('.modal-img');
+            modalImg.src = images[currentModalIndex].src;
+        }
+
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
